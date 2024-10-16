@@ -42,7 +42,7 @@ import axios from "axios";
 import {ENV} from "@/utility/const";
 import ToastService from "@/components/Toast";
 
-const Students = ({data,setUsername,students, pagination}) => {
+const Students = ({data,setUsername,students}) => {
     const [filteredData, setFilteredData] = useState(students)
     const [value, setValue] = useState(1)
     const [selectedRow, setSelectedRow] = useState({});
@@ -56,8 +56,7 @@ const Students = ({data,setUsername,students, pagination}) => {
 
     useEffect(()=>{
         setUsername(data.username)
-        setValue(pagination.current)
-    }, [setUsername, data.username, pagination])
+    }, [setUsername, data.username])
 
     const deleteHandler = (nopeserta)=>{
         setSelected(nopeserta)
@@ -119,21 +118,6 @@ const Students = ({data,setUsername,students, pagination}) => {
             ToastService('error',e.message,toast)
         } finally {
             onClose()
-        }
-    }
-
-    const paginate = async (pag) => {
-        try {
-            const students = await axios.get(`/api/admin/students?page=${pag}`, {
-                credentials: 'same-origin',
-            });
-            const {data} = await students.data
-            setFilteredData(data)
-            if (pag <= pagination.max){
-                setValue(pag)
-            }
-        } catch (e){
-            ToastService('error',e.message,toast)
         }
     }
 
@@ -273,17 +257,6 @@ const Students = ({data,setUsername,students, pagination}) => {
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
-                        <Box mt={5}>
-                            <Button onClick={
-                                ()=> paginate(value-1)
-                            }>-</Button>
-                            <Box as='span' w='200px' mx='24px'>
-                                {value}
-                            </Box>
-                            <Button disabled={(value+1) === parseInt(pagination.max)} onClick={
-                                ()=>paginate(value+1)
-                            }>+</Button>
-                        </Box>
                     </Box>
                 </Box>
         </>
@@ -308,7 +281,7 @@ export async function getServerSideProps(context) {
             }
         });
         const user = await users.data
-        const {data, pagination} = await students.data
+        const {data} = await students.data
         if (user.status === 401) {
             deleteCookie('token-key', { req, res });
             return {
@@ -322,7 +295,6 @@ export async function getServerSideProps(context) {
             props: {
                 data : user.data,
                 students : data,
-                pagination: pagination
             },
         }
     } catch(err) {

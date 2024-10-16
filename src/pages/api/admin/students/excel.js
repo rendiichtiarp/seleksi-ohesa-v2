@@ -39,7 +39,6 @@ export default async function handler(req,res) {
                     })
                     const convertedData = data.map(item => ({
                         ...item,
-                        tgl_lahir: sequelize.fn('STR_TO_DATE', item.tgl_lahir, '%d%m%Y'),
                     }));
                     await Student.bulkCreate(convertedData)
 

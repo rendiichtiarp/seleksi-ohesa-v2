@@ -39,14 +39,14 @@ export default async function handler(req,res){
                     order: [
                         ['openDate', 'DESC']
                     ],
-                    limit: 10
+                    limit: 50
                 })
 
                 const formattedStudents = listsiswa.map(student => {
                     const date = new Date(student.dataValues.openDate);
                     return {
                         ...student.dataValues,
-                        openDate: date.toLocaleString("en-US", {
+                        openDate: date.toLocaleString("id", {
                             year: "numeric",
                             month: "2-digit",
                             day: "2-digit",

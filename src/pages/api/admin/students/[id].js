@@ -46,11 +46,7 @@ export default async function handler(req,res) {
                     name : req.body.name,
                     eskul : req.body.eskul,
                     kelas : req.body.kelas,
-                    jurusan : req.body.jurusan,
                     status : req.body.status,
-                    tgl_lahir : req.body.tgl_lahir,
-                    kabupaten : req.body.kabupaten,
-                    provinsi : req.body.provinsi
                 }
 
                 // count total students

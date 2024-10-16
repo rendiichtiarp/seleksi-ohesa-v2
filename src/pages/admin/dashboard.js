@@ -11,18 +11,27 @@ import {
     Thead,
     Table, TableContainer
 } from "@chakra-ui/react";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {MdPeople} from "react-icons/md";
 import {AiFillEye} from "react-icons/ai";
 import {deleteCookie} from "cookies-next";
 import Head from "next/head";
 import axios from "axios";
 import {ENV} from "@/utility/const";
+import { Select } from "@chakra-ui/react";
 
 const Dashboard = ({data,setUsername,siswa})=>{
+    const [filter, setFilter] = useState("all");
+
     useEffect(()=>{
         setUsername(data.username)
     })
+    const filteredSiswa = siswa.listsiswa.filter(item => {
+        if (filter === "opened") return item.isOpen === 1;
+        if (filter === "not-opened") return item.isOpen !== 1;
+        return true; // "all" case
+    });
+
     return(
         <>
             <Head>
@@ -70,6 +79,11 @@ const Dashboard = ({data,setUsername,siswa})=>{
                     </SimpleGrid>
                     <Box bg={'white'} mx={10} p={10} borderRadius={6}>
                         <Text color={'gray.500'} fontFamily={'Lato'} fontWeight={'900'} fontSize={'2xl'} mb={8}>Riwayat</Text>
+                        <Select mb={4} onChange={(e) => setFilter(e.target.value)} value={filter} width="200px">
+                            <option value="all">Semua</option>
+                            <option value="opened">Sudah Dibuka</option>
+                            <option value="not-opened">Belum Dibuka</option>
+                        </Select>
                         <TableContainer>
                             <Table variant='simple' colorScheme='teal'>
                                 <Thead>
@@ -78,20 +92,20 @@ const Dashboard = ({data,setUsername,siswa})=>{
                                         <Th>Nama</Th>
                                         <Th>Status</Th>
                                         <Th>Waktu Dibuka</Th>
+                                        <Th>Keterangan</Th>
                                     </Tr>
                                 </Thead>
                                 <Tbody>
                                     {
-                                        siswa.listsiswa
-                                            .filter(item => item.openDate) // Filter data yang memiliki openDate
-                                            .map((item, index) => (
-                                                <Tr key={index}>
-                                                    <Td>{item.nopeserta}</Td>
-                                                    <Td>{item.name}</Td>
-                                                    <Td>{item.status !== 1 ? 'Tidak Lulus' : 'Lulus'}</Td>
-                                                    <Td>{item.openDate}</Td>
-                                                </Tr>
-                                            ))
+                                        filteredSiswa.map((item, index) => (
+                                            <Tr key={index}>
+                                                <Td>{item.nopeserta}</Td>
+                                                <Td>{item.name}</Td>
+                                                <Td>{item.status !== 1 ? 'Tidak Lulus' : 'Lulus'}</Td>
+                                                <Td>{item.openDate}</Td>
+                                                <Td>{item.isOpen !== 1 ? 'Belum Dibuka' : 'Sudah Dibuka'}</Td>
+                                            </Tr>
+                                        ))
                                     }
                                 </Tbody>
                             </Table>

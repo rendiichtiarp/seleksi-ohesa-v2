@@ -7,11 +7,16 @@ const ModalErrorAPI = ()=>{
         <Modal isCentered isOpen={true} onClose={onClose}>
             <ModalOverlay
                 bg='blackAlpha.100'
-                backdropFilter='blur(10px) hue-rotate(90deg)'
+                backdropFilter='blur(10px) hue-rotate(50deg)'
             />
-            <ModalContent>
-                <ModalBody bg={'gray.800'} p={8} textAlign={'center'}>
-                    <Text color={'white'} fontFamily={'Lato'} fontSize={'xl'}>Pengumuman belum dibuka! Silahkan hubungi admin</Text>
+            <ModalContent width={"auto"} borderRadius="md" boxShadow="lg">
+                <ModalBody bg={'gray.900'} p={10} textAlign={'center'} borderRadius="md">
+                    <Text color={'white'} fontFamily={'Lato'} fontSize={'xl'} mb={4}>
+                        Cek hasil seleksi belum dibuka nih! Tungguin aja sampe buka hehe 😁
+                    </Text>
+                    <Text color={'gray.300'} fontFamily={'Lato'} fontSize={'md'}>
+                        <a href="https://wa.me/+6281284900651" target="_blank" rel="noreferrer" style={{ color: 'lightblue' }}>Klik disini</a> untuk menghubungi admin.
+                    </Text>
                 </ModalBody>
             </ModalContent>
         </Modal>

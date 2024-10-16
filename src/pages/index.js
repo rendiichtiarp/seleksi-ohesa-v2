@@ -91,10 +91,10 @@ export default function Home({data,isClosed}) {
                           py={'18px'} 
                           px={'18px'} 
                           placeholder={'Masukan nomor peserta disini'} 
-                          maxLength={8} 
-                          onInput={(e) => e.target.value = e.target.value.slice(0, 8)}
+                          maxLength={10} 
+                          onInput={(e) => e.target.value = e.target.value.slice(0, 10)}
                       />
-                      <FormHelperText mb={8}>Nomor peserta harus terdiri dari 8 digit angka</FormHelperText>
+                      <FormHelperText mb={8}>Nomor peserta harus terdiri dari 10 digit angka</FormHelperText>
                       <Button
                           mt={6}
                           isLoading={isLoading}

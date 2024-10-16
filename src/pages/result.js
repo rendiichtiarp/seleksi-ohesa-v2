@@ -32,6 +32,9 @@ export default function Result({datas,info}) {
                         </Box>
                     </Flex>
                 </Box>
+                <Text color={'#999'} fontSize={'0.8rem'} fontFamily={'Lato'} mb={'30px'}>
+            Dibuat oleh <a href="https://www.instagram.com/rendiichtiar" target="_blank" rel="noopener noreferrer" style={{ color: '#999', textDecoration: 'underline' }}>@rendiichtiar</a> dengan ❤️ | Copyright © 2024
+          </Text>
                 </ScaleFade>
         </>
     )
