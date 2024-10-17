@@ -14,7 +14,7 @@ export default function Result({datas,info}) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
                 <ScaleFade initialScale={0.5} in={true}>
-                <Box bgColor='rgba(0,0,0,0.3)' w={'full'} maxW={'1200'} backdropBlur={"md"}>
+                <Box bgColor='rgba(0,0,0,0.3)' w={'full'} maxW={'1200'} backdropBlur={"md"} borderRadius={10}>
                     {
                         datas.status === 1 ? (
                             <HeaderLulus />

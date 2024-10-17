@@ -68,7 +68,7 @@ export default function Home({data,isClosed}) {
             <ModalErrorAPI />
         }
           <ScaleFade initialScale={0.5} in={true}>
-          <Box p={6} bgColor='rgba(0,0,0,0.3)' w={'full'} maxW={['full',700,700]} backdropBlur={"md"}>
+          <Box p={8} bgColor='rgba(0,0,0,0.3)' w={'full'} maxW={['full',700,700]} backdropBlur={"md"} borderRadius='10px'>
               <Flex flexDirection={'row'} justifyContent={'center'} alignItems={'center'} mb={5}>
                   <Image src={'/img/main-logo.png'} h={['80px','90px',null]} alt={'Icon'} />
               </Flex>
