@@ -70,7 +70,7 @@ export default function Home({data,isClosed}) {
           <ScaleFade initialScale={0.5} in={true}>
           <Box p={6} bgColor='rgba(0,0,0,0.3)' w={'full'} maxW={['full',700,700]} backdropBlur={"md"}>
               <Flex flexDirection={'row'} justifyContent={'center'} alignItems={'center'} mb={5}>
-                  <Image src={'/img/main-logo.png'} h={['80px','90px',null]} mr={5} alt={'Icon'} />
+                  <Image src={'/img/main-logo.png'} h={['80px','90px',null]} alt={'Icon'} />
               </Flex>
               <Heading color={'white'} fontWeight={'900'} fontFamily={'Lato'} letterSpacing={1} mt={0} mb={1} fontSize={['1rem','1.8rem','2.2rem']}>{data.judul_web ?? 'Error'}</Heading>
               <Text color={'#999'} fontFamily={'Lato'} mb={'30px'}>Cek hasil seleksi peserta anggota baru</Text>
